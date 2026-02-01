@@ -26,6 +26,8 @@
       text-align: center;
       width: 320px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      position: relative;
+      overflow: hidden;
     }
 
     .card img {
@@ -39,31 +41,35 @@
     }
 
     .buttons {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
+      position: relative;
+      height: 70px;
     }
 
     button {
-      padding: 10px 20px;
+      padding: 10px 22px;
       border: none;
       border-radius: 12px;
       font-size: 16px;
       cursor: pointer;
+      position: absolute;
+      transition: transform 0.2s ease;
     }
 
     #yes {
       background: #ff4d6d;
       color: white;
-      transition: transform 0.2s ease;
+      left: 35px;
+      z-index: 2;
     }
 
     #no {
       background: #e0e0e0;
+      right: 35px;
+      z-index: 1;
     }
 
     .note {
-      margin-top: 10px;
+      margin-top: 75px;
       font-size: 12px;
       color: #999;
     }
@@ -73,33 +79,46 @@
 <body>
 
   <div class="card" id="card">
-    <img src="teddy.png.jpeg" alt="cute teddy">
+    <img src="teddy.png" alt="cute teddy">
 
     <h1>theertha will you be my valentine?</h1>
 
     <div class="buttons">
-      <button id="yes" onclick="yesClicked()">Yes</button>
+      <button id="yes">Yes</button>
       <button id="no">No</button>
     </div>
 
-    <div class="note">"No"seems a bit shy 😈</div>
+    <div class="note">No seems a bit shy 😈</div>
   </div>
 
   <script>
+    const yesBtn = document.getElementById("yes");
+    const noBtn = document.getElementById("no");
+    const card = document.getElementById("card");
+
     let scale = 1;
 
-    function yesClicked() {
-      scale += 0.2;
-      document.getElementById("yes").style.transform = `scale(${scale})`;
+    // NO button runs away on hover
+    noBtn.addEventListener("mouseenter", () => {
+      const x = Math.random() * 140 - 70;
+      const y = Math.random() * 40 - 20;
+      noBtn.style.transform = `translate(${x}px, ${y}px)`;
+    });
 
-      if (scale > 1.8) {
-        document.getElementById("card").innerHTML = `
-          <img src="teddy.png" style="width:150px;">
-          <h1>Yay!! ❤️</h1>
-          <p>You just made my day 🥹</p>
-        `;
-      }
-    }
+    // Clicking NO grows YES only
+    noBtn.addEventListener("click", () => {
+      scale += 0.25;
+      yesBtn.style.transform = `scale(${scale})`;
+    });
+
+    // Clicking YES shows final message
+    yesBtn.addEventListener("click", () => {
+      card.innerHTML = `
+        <img src="teddy.png" style="width:160px; margin-bottom:20px;">
+        <h1>Yay!! ❤️</h1>
+        <p>You just made my day 🥹</p>
+      `;
+    });
   </script>
 
 </body>
