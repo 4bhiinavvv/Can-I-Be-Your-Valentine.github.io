@@ -22,7 +22,8 @@ yesBtn.addEventListener("click", () => {
       background:#f6c1cc;
       font-family:Arial;
       text-align:center;">
-      <h1>yeyy I knew it 💖</h1>
+      <h1>hehe I knew it 💖</h1>
     </div>
   `;
 });
+
