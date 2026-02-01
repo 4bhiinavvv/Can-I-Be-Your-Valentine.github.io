@@ -1,44 +1,28 @@
-function getRandomNumber(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) + min);
-}
+const noBtn = document.getElementById("no");
+const yesBtn = document.getElementById("yes");
 
-function moveNonButton() {
-    const button = document.getElementById('nonButton');
-    const buttonWidth = button.offsetWidth;
-    const buttonHeight = button.offsetHeight;
+let scale = 1;
 
-    const screenWidth = window.innerWidth;
-    const screenHeight = window.innerHeight;
+noBtn.addEventListener("mouseover", () => {
+  const x = Math.random() * 200 - 100;
+  const y = Math.random() * 60 - 30;
+  noBtn.style.transform = `translate(${x}px, ${y}px)`;
 
-    const maxButtonX = screenWidth - buttonWidth;
-    const maxButtonY = screenHeight - buttonHeight;
+  scale += 0.15;
+  yesBtn.style.transform = `scale(${scale})`;
+});
 
-    const marginTop = 12 * parseFloat(getComputedStyle(document.documentElement).fontSize);
-
-    const maxScreenX = screenWidth - buttonWidth;
-    const maxScreenY = screenHeight - buttonHeight - marginTop;
-
-    let newX = getRandomNumber(0, maxScreenX);
-    let newY = getRandomNumber(0, maxScreenY);
-
-    newX = Math.min(Math.max(newX, 0), maxButtonX);
-    newY = Math.min(Math.max(newY, marginTop), maxButtonY);
-
-    button.style.position = 'fixed';
-    button.style.left = newX + 'px';
-    button.style.top = newY + 'px';
-}
-
-function initialize() {
-    document.getElementById('nonButton').addEventListener('mouseenter', moveNonButton);
-    window.addEventListener('resize', moveNonButton);
-    document.getElementById('nonButton').addEventListener('mouseenter', function() {
-        img.src = 'img/cats-sad.gif';
-    });
-    document.getElementById('ouiButton').addEventListener('mouseenter', function() {
-        img.src = 'img/love-cat.gif';
-    });
-}
-
-const img = document.querySelector('img');
-initialize();
+yesBtn.addEventListener("click", () => {
+  document.body.innerHTML = `
+    <div style="
+      height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background:#f6c1cc;
+      font-family:Arial;
+      text-align:center;">
+      <h1>yeyy I knew it 💖</h1>
+    </div>
+  `;
+});
