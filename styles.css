@@ -1,65 +1,60 @@
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
-
-body, html {
-    height: 100%;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+body {
+  margin: 0;
+  height: 100vh;
+  background: #f6c1cc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
 }
 
-* {
-    background-color: wheat;
+.card {
+  background: white;
+  padding: 40px;
+  border-radius: 25px;
+  text-align: center;
+  width: 320px;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.15);
 }
 
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    height: 100%;
-}
-
-.button-container {
-    margin-top: 20px;
-}
-
-button {
-    margin: 10px;
-    background-color: #000000;
-    padding: 10px 20px;
-    border: none;
-    transition: left 1s ease, top 1s ease;
-    border-radius: 25%;
-    color: white;
-}
-
-button:hover {
-    cursor: pointer;
-    background-color: #555;
-}
-
-#textMain {
-    margin-top: 20px;
-}
-
-img {
-    width: 260px;
-    height: 300px;
-}
-
-#dancingCat {
-    width: 75%;
-    height: 75%;
+.card img {
+  width: 150px;
+  margin-bottom: 20px;
 }
 
 h1 {
-    font-family: "Dancing Script", cursive;
-    font-weight: bold;
-    font-size: 4rem;
+  font-size: 20px;
+  margin-bottom: 25px;
 }
 
-#textSee {
-    width: 25rem;
+.buttons {
+  position: relative;
+  height: 60px;
+}
+
+button {
+  padding: 10px 25px;
+  font-size: 16px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+}
+
+#yes {
+  background: #ff5c8a;
+  color: white;
+  left: 60px;
+  transition: transform 0.2s;
+}
+
+#no {
+  background: #ddd;
+  color: black;
+  left: 160px;
+}
+.shy-text {
+  margin-top: 12px;
+  font-size: 12px;
+  color: #888;
 }
