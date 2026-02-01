@@ -42,13 +42,13 @@
 
     .buttons {
       position: relative;
-      height: 70px;
+      height: 80px;
     }
 
     button {
-      padding: 10px 22px;
+      padding: 12px 24px;
       border: none;
-      border-radius: 12px;
+      border-radius: 14px;
       font-size: 16px;
       cursor: pointer;
       position: absolute;
@@ -58,18 +58,18 @@
     #yes {
       background: #ff4d6d;
       color: white;
-      left: 35px;
+      left: 30px;
       z-index: 2;
     }
 
     #no {
       background: #e0e0e0;
-      right: 35px;
+      right: 30px;
       z-index: 1;
     }
 
     .note {
-      margin-top: 75px;
+      margin-top: 80px;
       font-size: 12px;
       color: #999;
     }
@@ -79,7 +79,7 @@
 <body>
 
   <div class="card" id="card">
-    <img src="teddy.png" alt="cute teddy">
+    <img src="teddy.png.jpeg" alt="cute teddy">
 
     <h1>theertha will you be my valentine?</h1>
 
@@ -88,7 +88,7 @@
       <button id="no">No</button>
     </div>
 
-    <div class="note">No seems a bit shy 😈</div>
+    <div class="note">"No"seems a bit shy 😈</div>
   </div>
 
   <script>
@@ -98,23 +98,26 @@
 
     let scale = 1;
 
-    // NO button runs away on hover
-    noBtn.addEventListener("mouseenter", () => {
-      const x = Math.random() * 140 - 70;
-      const y = Math.random() * 40 - 20;
-      noBtn.style.transform = `translate(${x}px, ${y}px)`;
-    });
+    // NO button runs away when pointer gets near
+    noBtn.addEventListener("mouseenter", moveNo);
+    noBtn.addEventListener("touchstart", moveNo);
 
-    // Clicking NO grows YES only
+    function moveNo() {
+      const x = Math.random() * 160 - 80;
+      const y = Math.random() * 50 - 25;
+      noBtn.style.transform = `translate(${x}px, ${y}px)`;
+    }
+
+    // Clicking NO grows YES
     noBtn.addEventListener("click", () => {
-      scale += 0.25;
+      scale += 0.35;
       yesBtn.style.transform = `scale(${scale})`;
     });
 
-    // Clicking YES shows final message
+    // Clicking YES shows message (NO GROWTH HERE)
     yesBtn.addEventListener("click", () => {
       card.innerHTML = `
-        <img src="teddy.png" style="width:160px; margin-bottom:20px;">
+        <img src="teddy.png.jpeg" style="width:160px; margin-bottom:20px;">
         <h1>Yay!! ❤️</h1>
         <p>You just made my day 🥹</p>
       `;
