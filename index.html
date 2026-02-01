@@ -3,28 +3,104 @@
 <head>
   <meta charset="UTF-8">
   <title>Valentine</title>
-  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #f6c1cc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      width: 320px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
+
+    .card img {
+      width: 140px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    #yes {
+      background: #ff4d6d;
+      color: white;
+      transition: transform 0.2s ease;
+    }
+
+    #no {
+      background: #e0e0e0;
+    }
+
+    .note {
+      margin-top: 10px;
+      font-size: 12px;
+      color: #999;
+    }
+  </style>
 </head>
+
 <body>
 
-  <div class="card">
+  <div class="card" id="card">
     <img src="teddy.png.jpeg" alt="cute teddy">
 
     <h1>theertha will you be my valentine?</h1>
 
     <div class="buttons">
-      <button id="yes">Yes</button>
+      <button id="yes" onclick="yesClicked()">Yes</button>
       <button id="no">No</button>
     </div>
 
-    <p class="shy-text">No seems a bit shy 😈</p>
+    <div class="note">"No"seems a bit shy 😈</div>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    let scale = 1;
+
+    function yesClicked() {
+      scale += 0.2;
+      document.getElementById("yes").style.transform = `scale(${scale})`;
+
+      if (scale > 1.8) {
+        document.getElementById("card").innerHTML = `
+          <img src="teddy.png" style="width:150px;">
+          <h1>Yay!! ❤️</h1>
+          <p>You just made my day 🥹</p>
+        `;
+      }
+    }
+  </script>
+
 </body>
 </html>
-
-
-
-
-
