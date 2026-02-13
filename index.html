@@ -52,7 +52,7 @@
       font-size: 16px;
       cursor: pointer;
       position: absolute;
-      transition: transform 0.12s ease;
+      transition: transform 0.05s linear; /* MUCH faster */
     }
 
     #yes {
@@ -73,13 +73,19 @@
       font-size: 12px;
       color: #999;
     }
+
+    video {
+      width: 100%;
+      border-radius: 16px;
+      margin-bottom: 20px;
+    }
   </style>
 </head>
 
 <body>
 
   <div class="card" id="card">
-    <img src="teddy.png.jpeg" alt="cute teddy">
+    <img src="teddy.png" alt="cute teddy">
 
     <h1>theertha will you be my valentine?</h1>
 
@@ -98,27 +104,24 @@
 
     let scale = 1;
 
-    // When NO is hovered, it runs away AND YES grows
+    // SUPER FAST NO button + YES grows
     function dodgeNo() {
-      // move NO fast
-      const x = Math.random() * 220 - 110;
-      const y = Math.random() * 80 - 40;
+      const x = Math.random() * 300 - 150; // wider jump
+      const y = Math.random() * 140 - 70;  // taller jump
       noBtn.style.transform = `translate(${x}px, ${y}px)`;
 
-      // grow YES
       scale += 0.18;
       yesBtn.style.transform = `scale(${scale})`;
     }
 
     noBtn.addEventListener("mouseenter", dodgeNo);
-    noBtn.addEventListener("touchstart", dodgeNo); // mobile support
+    noBtn.addEventListener("touchstart", dodgeNo);
 
-    // Clicking YES shows message ONLY
+    // YES click → video + message
     yesBtn.addEventListener("click", () => {
       card.innerHTML = `
-        <img src="teddyy.mp4" style="width:160px; margin-bottom:20px;">
-        <h1>Hehehe...I knew it❤️</h1>
-        <p>You just made my day 🥹</p>
+        <video src="yes.mp4" autoplay loop muted playsinline></video>
+        <h1>Hehehe… I knew it 😁❤️</h1>
       `;
     });
   </script>
