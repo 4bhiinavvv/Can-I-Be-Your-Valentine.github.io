@@ -17,6 +17,7 @@
       justify-content: center;
       align-items: center;
       font-family: Arial, sans-serif;
+      overflow: hidden; /* keep chaos clean */
     }
 
     .card {
@@ -27,7 +28,7 @@
       width: 320px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.15);
       position: relative;
-      overflow: hidden;
+      overflow: visible; /* IMPORTANT */
     }
 
     .card img {
@@ -52,7 +53,7 @@
       font-size: 16px;
       cursor: pointer;
       position: absolute;
-      transition: transform 0.05s linear; /* MUCH faster */
+      transition: transform 0.03s linear; /* SUPER FAST */
     }
 
     #yes {
@@ -65,7 +66,7 @@
     #no {
       background: #e0e0e0;
       right: 30px;
-      z-index: 1;
+      z-index: 9999; /* float above everything */
     }
 
     .note {
@@ -104,28 +105,28 @@
 
     let scale = 1;
 
-    // SUPER FAST NO button + YES grows
-    function dodgeNo() {
-      const x = Math.random() * 300 - 150; // wider jump
-      const y = Math.random() * 140 - 70;  // taller jump
+    function escapeNo() {
+      const x = Math.random() * window.innerWidth - window.innerWidth / 2;
+      const y = Math.random() * window.innerHeight - window.innerHeight / 2;
+
       noBtn.style.transform = `translate(${x}px, ${y}px)`;
 
-      scale += 0.18;
+      scale += 0.2;
       yesBtn.style.transform = `scale(${scale})`;
     }
 
-    noBtn.addEventListener("mouseenter", dodgeNo);
-    noBtn.addEventListener("touchstart", dodgeNo);
+    // Trigger on hover AND touch
+    noBtn.addEventListener("mouseenter", escapeNo);
+    noBtn.addEventListener("touchstart", escapeNo);
 
     // YES click → video + message
     yesBtn.addEventListener("click", () => {
       card.innerHTML = `
         <video src="teddyy.mp4" autoplay loop muted playsinline></video>
-        <h1>Hehehe… I knew it 😁❤️</h1>
+        <h1>Hehehe… I knew it 😌❤️</h1>
       `;
     });
   </script>
 
 </body>
 </html>
-
